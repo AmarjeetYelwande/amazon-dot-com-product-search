@@ -7,9 +7,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
-                sh 'npx playwright --version'
-                // dependencies already installed in the docker image
-                // sh 'npx playwright install --with-deps'
+                sh 'npx playwright --version'                
+                sh 'npx playwright install --with-deps'
             }
         }
 
