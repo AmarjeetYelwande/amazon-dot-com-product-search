@@ -4,11 +4,19 @@ pipeline {
     tools {nodejs "NodeJsSupport"}
 
     stages {
+
+        stage("Fix the permission issue") {            
+
+            steps {
+                sh "sudo chown root:jenkins /run/docker.sock"
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
                 sh 'npx playwright --version'                
-                sh 'sudo npx playwright install --with-deps'
+                sh 'npx playwright install --with-deps'
             }
         }
 
