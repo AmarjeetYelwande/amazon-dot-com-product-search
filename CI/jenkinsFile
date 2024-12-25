@@ -35,7 +35,7 @@ pipeline {
             }
         }
     }
-}
+
 
     post {
         always {
@@ -45,5 +45,6 @@ pipeline {
             echo 'Tests failed! Check the report.'
         }
     }
+}
 
 
