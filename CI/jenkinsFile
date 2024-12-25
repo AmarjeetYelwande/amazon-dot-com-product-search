@@ -5,12 +5,16 @@ pipeline {
 
     stages {
 
-       /*  stage("Fix the permission issue") {            
-
-            steps {
-                sh "sudo chown root:jenkins /run/docker.sock"
+        stage("Clean Up"){
+            steps{
+                deleteDir()
             }
-        } */
+        }
+        stage("Clone Repo"){
+            steps{
+                sh "git clonehttps://github.com/AmarjeetYelwande/amazon-dot-com-product-search.git"
+            }       
+        }       
 
         stage('Install Dependencies') {
             steps {
