@@ -10,6 +10,7 @@ pipeline {
                 deleteDir()
             }
         }
+
         stage("Clone Repo"){
             steps{
                 sh "git clone https://github.com/AmarjeetYelwande/amazon-dot-com-product-search.git"
@@ -31,8 +32,8 @@ pipeline {
             dir("amazon-dot-com-product-search"){
                    sh 'npx playwright test'
                 }            
+            }
         }
-    }
 
     post {
         always {
@@ -42,4 +43,5 @@ pipeline {
             echo 'Tests failed! Check the report.'
         }
     }
+}
 }
