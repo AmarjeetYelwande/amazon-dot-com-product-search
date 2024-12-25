@@ -21,7 +21,7 @@ pipeline {
             steps{
                 dir("amazon-dot-com-product-search"){
                     sh 'npm ci'                                              
-                    sh 'sudo npx playwright install --with-deps'                    
+                    sh 'npx playwright install --with-deps'                    
                 }
             }           
         }
