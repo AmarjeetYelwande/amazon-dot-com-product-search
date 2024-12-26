@@ -21,7 +21,7 @@ pipeline {
             steps{
                 dir("amazon-dot-com-product-search"){
 
-                    sh 'apt-get update'
+                    sh 'sudo apt-get update'
                     sh 'apt-get install sudo'
                     sh 'sudo -i'
                     sh '1234'
