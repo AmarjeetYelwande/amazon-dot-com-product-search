@@ -19,12 +19,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps{
-                dir("amazon-dot-com-product-search"){
-
-                    sh 'sudo apt-get update'
-                    sh 'apt-get install sudo'
-                    sh 'sudo -i'
-                    sh '1234'
+                dir("amazon-dot-com-product-search"){                    
                     sh 'npm ci'                                              
                     sh 'npx playwright install --with-deps'                    
                 }
