@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+    
+    tools {nodejs "NodeJS"}
+
+    stages {
+
+        stage("Clean Up"){
+            steps{
+                deleteDir()
+            }
+        }
+
+        stage("Clone Repo"){
+            steps{
+                sh "git clone https://github.com/AmarjeetYelwande/amazon-dot-com-product-search.git"
+            }       
+        }       
+
+        stage('Install Dependencies') {
+            steps{
+                dir("amazon-dot-com-product-search"){                    
+                    sh 'npm ci'                                              
+                    sh 'npx playwright install --with-deps'                    
+                }
+            }           
+        }
+
+        stage('Run Tests') {
+            steps{
+
+            dir("amazon-dot-com-product-search"){
+                   sh 'npx playwright test'
+                }            
+            }
+        }
+    }
+
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+        }
+        failure {
+            echo 'Tests failed! Check the report.'
+        }
+    }
+}
+
+
